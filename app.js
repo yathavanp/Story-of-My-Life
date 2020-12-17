@@ -218,6 +218,7 @@ app.post("/submit", function (req, res) {
 });
 
 //initialize server
+
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
