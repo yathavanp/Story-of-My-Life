@@ -6,15 +6,38 @@
     <h1 class="display-3">Secrets</h1>
     <p class="secret-text">Don't keep your secrets, share them anonymously!</p>
 
-    <form action="/submit" method="POST">
+    <% userSecrets.forEach(function(secret,index){ %>
+    <form action="/delete" method="POST">
+      <li class="list">
+        <div class="item secret-text">
+          <label for="x-button"><%=secret%></label>
+          <input
+            type="button"
+            id="x-button"
+            name="x"
+            value="x"
+            class="close x"
+            onclick="this.form.submit()"
+          />
+          <input type="hidden" name="checkbox" value="<%=index%>" />
+        </div>
+      </li>
+      <input type="hidden" name="userId" value="<%= user.id %>" />
+    </form>
+    <% }); %>
 
+    <form action="/submit" method="POST">
       <div class="form-group">
-        <input type="text" class="form-control text-center" name="secret" placeholder="What's your secret?">
+        <input
+          type="text"
+          class="form-control text-center"
+          name="secret"
+          placeholder="What's your secret?"
+          required
+        />
       </div>
       <button type="submit" class="btn btn-dark">Submit</button>
     </form>
-
-
   </div>
 </div>
 <%- include('partials/footer') %>
