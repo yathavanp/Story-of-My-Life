@@ -28,7 +28,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.connect(
-  "mongodb+srv://admin-yaddy:Test123@cluster0.ennyk.gcp.mongodb.net/secretsUserDB",
+  "mongodb+srv://" +
+    process.env.DB_USER +
+    ":" +
+    process.env.DB_PSWD +
+    "@cluster0.ennyk.gcp.mongodb.net/secretsUserDB",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -214,7 +218,10 @@ app.post("/submit", function (req, res) {
 });
 
 //initialize server
-const port = 3000;
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 app.listen(port, function () {
   console.log("Server running on Port:" + port + "...");
 });
