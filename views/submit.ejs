@@ -1,26 +1,21 @@
 <%- include('partials/header') %>
 
 <div class="container">
-  <div class="jumbotron centered">
-    <i class="fas fa-key fa-6x"></i>
-    <h1 class="display-3">Secrets</h1>
-    <p class="secret-text">Don't keep your secrets, share them anonymously!</p>
+  <div class="jumbotron text-center background">
+    <i class="fas fa-book-reader fa-6x"></i>
+    <h1 class="display-3 title">Story of My Life</h1>
+    <p class="lead">Share your moment!</p>
 
     <% userSecrets.forEach(function(secret,index){ %>
     <form action="/delete" method="POST">
       <li class="list">
         <div class="item secret-text">
           <label for="x-button"><%=secret%></label>
-          <input
-            type="button"
-            id="x-button"
-            name="x"
-            value="x"
-            class="close x"
-            onclick="this.form.submit()"
-          />
-          <input type="hidden" name="checkbox" value="<%=index%>" />
+          <button class="x-button" id="x-button" type="submit">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
+        <input type="hidden" name="checkbox" value="<%=index%>" />
       </li>
       <input type="hidden" name="userId" value="<%= user.id %>" />
     </form>
@@ -28,15 +23,16 @@
 
     <form action="/submit" method="POST">
       <div class="form-group">
-        <input
+        <textarea
           type="text"
-          class="form-control text-center"
+          class="form-control txtarea"
           name="secret"
-          placeholder="What's your secret?"
+          placeholder="Once upon a time..."
+          rows="4"
           required
-        />
+        ></textarea>
       </div>
-      <button type="submit" class="btn btn-dark">Submit</button>
+      <button type="submit" class="btn btn-dark">Publish</button>
     </form>
   </div>
 </div>

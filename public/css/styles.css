@@ -1,11 +1,43 @@
 
 body {
-  background-color: #E8ECEF;
+  background-color: #8ecab6;
+  font-family: 'Roboto', sans-serif;
 }
 
 .centered {
     padding-top: 200px;
     text-align: center;
+    background-color:  #8ecab6;
+}
+
+.card{
+  background-color:  #afe0d0;
+}
+
+.background{
+  background-color:  #8ecab6;
+}
+
+.title{
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
+hr{
+  margin: 2rem;
+}
+
+.collection{
+  margin-bottom: 20px;
+}
+
+.fa-times:hover{
+  color: grey;
+}
+.x-button{
+  background-color: transparent;
+  border: none;
+  margin: 0px 0px, 5px 10px;
 }
 
 
@@ -14,10 +46,19 @@ body {
 }
 
 .secret-text {
-  text-align: center;
-  font-size: 2rem;
-  color: #fff;
-  background-color: #000;
+  text-align: left;
+  font-size: 1rem;
+  color: black;
+  background-color:white;
+  border-radius: 10px;
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  
+  justify-content: space-between;
+}
+
+.own-story{
+  padding-right: 40px;
 }
 
 div.secret-text{
@@ -43,21 +84,7 @@ div.secret-text{
   font-size: 16px;
 }
 
-.x{
-  vertical-align: center;
-  background-color: black;
-  border: none;
-  color: white;
-  text-align: center;
-  font-family: 'Nunito', sans-serif;
-  margin: 10px 10px 0 -10px;
+.txtarea{
+  background-color: rgb(208, 230, 245);
 }
 
-.x:active{
-  outline: none;
-  border: none;
-}
-
-.x:change{
-  border: none;
-}
