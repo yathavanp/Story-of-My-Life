@@ -70,7 +70,7 @@ passport.use(
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL:
-        "https://dry-retreat-29280.herokuapp.com/auth/google/secrets",
+        "https://dry-retreat-29280.herokuapp.com/auth/google/stories",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -90,11 +90,11 @@ app.get(
 );
 
 app.get(
-  "/auth/google/secrets",
+  "/auth/google/stories",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/secrets");
+    res.redirect("/stories");
   }
 );
 
@@ -130,7 +130,7 @@ app.get("/register", function (req, res) {
   res.render("register");
 });
 
-app.get("/secrets", function (req, res) {
+app.get("/stories", function (req, res) {
   if (req.isAuthenticated()) {
     let everySecret = [];
     User.find({ secrets: { $ne: null } }, function (err, found) {
@@ -143,7 +143,7 @@ app.get("/secrets", function (req, res) {
               everySecret.push(secret);
             });
           });
-          res.render("secrets", { userSecrets: ran(everySecret) });
+          res.render("stories", { userSecrets: ran(everySecret) });
         }
       }
     });
