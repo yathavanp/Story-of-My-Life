@@ -179,7 +179,7 @@ app.post("/login", function (req, res) {
       res.redirect("/login");
     } else {
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/secrets");
+        res.redirect("/stories");
       });
     }
   });
@@ -195,7 +195,7 @@ app.post("/register", function (req, res) {
         res.redirect("/register");
       } else {
         passport.authenticate("local")(req, res, function () {
-          res.redirect("/secrets");
+          res.redirect("/stories");
         });
       }
     }
@@ -212,7 +212,7 @@ app.post("/submit", function (req, res) {
       if (found) {
         found.secrets.push(newSecret);
         found.save();
-        res.redirect("/secrets");
+        res.redirect("/stories");
       }
     }
   });
