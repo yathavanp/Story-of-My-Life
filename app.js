@@ -1,3 +1,4 @@
+//Initializing Dependencies
 require("dotenv").config();
 const express = require("express");
 const ejs = require("ejs");
@@ -16,6 +17,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
+//Initializing Passport & Express Session
 app.use(
   session({
     secret: "Our Secret",
@@ -27,12 +29,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Initializing MongoDB and Schema
 mongoose.connect(
   "mongodb+srv://" +
     process.env.DB_USER +
     ":" +
     process.env.DB_PSWD +
-    "@cluster0.ennyk.gcp.mongodb.net/secretsUserDB",
+    process.env.DB_CLUSTER,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -52,6 +55,7 @@ userSchema.plugin(findOrCreate);
 
 const User = mongoose.model("User", userSchema);
 
+//Passport Hashing and Strategy
 passport.use(User.createStrategy());
 
 passport.serializeUser(function (user, done) {
@@ -80,6 +84,7 @@ passport.use(
   )
 );
 
+//GET and POST Methods
 app.get("/", function (req, res) {
   res.render("home");
 });
@@ -219,7 +224,6 @@ app.post("/submit", function (req, res) {
 });
 
 //initialize server
-
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
